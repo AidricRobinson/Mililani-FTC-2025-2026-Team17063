@@ -32,7 +32,7 @@ public class Constants {
         public static final DcMotorEx.Direction kStorageMotor1Direction = DcMotorEx.Direction.FORWARD;
 
         public static final int kServoClosedPosition = 0;
-        public static final int kServoOpenPosition = 80;
+        public static final int kServoOpenPosition = 20;
     }
 
     public static class AprilTagConstants {
@@ -41,6 +41,6 @@ public class Constants {
         public static final double kAlignmentOffset = 8.84;
         public static final double kFlywheelEquationA = 8.006546538;
         public static final double kFlywheelEquationB = -105.4470598;
-        public static final double kFlywheelEquationC = 1450;
+        public static final double kFlywheelEquationC = 1475.151779;
     }
 }

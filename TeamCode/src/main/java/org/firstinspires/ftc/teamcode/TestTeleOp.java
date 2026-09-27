@@ -17,51 +17,27 @@ import org.firstinspires.ftc.teamcode.Subsystems.StorageSubsystem;
 
 @TeleOp(name="TestTeleOp")
 public class TestTeleOp extends OpMode {
-    private FlywheelSubsystem flywheelSubsystem;
-    private IntakeSubsystem intakeSubsystem;
-    private MecanumSubsystem mecanumSubsystem;
-    private StorageSubsystem storageSubsystem;   //not needed
 
-    private IntakeCommand intakeCommand;
-    private StorageCommand storageCommand;
-    private Limelight3A limelight3A;
-    private AprilTagFlywheelCommand aprilTagFlywheelCommand;
-    private AprilTagAlignmentCommand aprilTagAlignmentCommand;
-    private TestFlywheelCommand testFlywheelCommand;
+    private StorageSubsystem storageSubsystem;
+    private TestStorageCommand testStorageCommand;
+
 
 
     @Override
     public void init() {
-        flywheelSubsystem = new FlywheelSubsystem(this);
-        intakeSubsystem = new IntakeSubsystem(this);
-        mecanumSubsystem = new MecanumSubsystem(this.hardwareMap, this);
-        storageSubsystem = new StorageSubsystem( this);
+        storageSubsystem = new StorageSubsystem(this);
+        testStorageCommand = new TestStorageCommand(storageSubsystem, gamepad1);
 
-        intakeCommand = new IntakeCommand(intakeSubsystem, storageSubsystem, gamepad1, gamepad2);
-        storageCommand = new StorageCommand(storageSubsystem, intakeSubsystem, gamepad1);
 
-        limelight3A = hardwareMap.get(Limelight3A.class, "limelight");
-        limelight3A.setPollRateHz(60);
-        limelight3A.pipelineSwitch(1);
-        limelight3A.start();
-
-        aprilTagAlignmentCommand = new AprilTagAlignmentCommand(mecanumSubsystem, limelight3A, gamepad2, telemetry);
-        aprilTagFlywheelCommand= new AprilTagFlywheelCommand(flywheelSubsystem, gamepad1, telemetry, limelight3A);
     }
 
     @Override
     public void loop() {
-        mecanumSubsystem.operate(gamepad1, telemetry);
-        testFlywheelCommand.operate();
-        aprilTagAlignmentCommand.operate(gamepad1);
+        testStorageCommand.operate(gamepad1);
     }
 
     @Override
     public void stop() {
-
-        mecanumSubsystem.shutdown();
-        intakeSubsystem.shutdown();
         storageSubsystem.shutdown();
-        flywheelSubsystem.shutdown();
     }
 }

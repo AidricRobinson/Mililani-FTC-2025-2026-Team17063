@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
-
 import org.firstinspires.ftc.teamcode.Subsystems.StorageSubsystem;
 
 public class TestStorageCommand {
@@ -13,20 +12,33 @@ public class TestStorageCommand {
         this.gamepad = gamepad;
     }
     public void operate() {
-        if(gamepad.a){
-            storageSubsystem.setMotorPower(.25);
-        }
-        else if(gamepad.b){
-            storageSubsystem.setMotorPower(.5);
-        }
-        else if(gamepad.x){
-            storageSubsystem.setMotorPower(.75);
-        }
-        else if (gamepad.y) {
+        // create 2 buttons, one for 50% and other for 100% power. It should be off when not pressing
+        //gamepad.a is boolean that is true when your clicking the button a
+        //storageSubsystem.setMotorPower( percent power);
+        //use if and else
+        //good luck
+        if (gamepad.a == true) {
+            storageSubsystem.setMotorPower(0.5);
+        } else if (gamepad.b == true) {
             storageSubsystem.setMotorPower(1);
-        }
-        else{
+        } else {
             storageSubsystem.setMotorPower(0);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 
